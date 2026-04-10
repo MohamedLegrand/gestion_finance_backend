@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework_simplejwt.views import TokenRefreshView
 
 # Importation des vues nécessaires pour la documentation Swagger (OpenAPI)
 from drf_spectacular.views import (
@@ -44,4 +45,7 @@ urlpatterns = [
 
     # Interface alternative ReDoc (présentation plus structurée en colonnes)
     path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+
+     # Token refresh
+    path('api/account/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
