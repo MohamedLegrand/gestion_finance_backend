@@ -15,10 +15,33 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path, include
+
+# Importation des vues nécessaires pour la documentation Swagger (OpenAPI)
+from drf_spectacular.views import (
+    SpectacularAPIView,          # Génère le schéma OpenAPI (fichier JSON/YAML)
+    SpectacularSwaggerView,      # Interface interactive Swagger UI
+    SpectacularRedocView,        # Interface alternative ReDoc
+)
 
 urlpatterns = [
+    # Administration Django
     path('admin/', admin.site.urls),
-    path('api/account/', include('account.api.urls')),
-]
 
+    # Vos endpoints API existants (gestion des comptes)
+    path('api/account/', include('account.api.urls')),
+
+    # ==============================================
+    # Documentation automatique de l'API (Swagger)
+    # ==============================================
+
+    # Endpoint qui expose le schéma OpenAPI brut (format JSON)
+    # Utile pour des outils tiers ou une génération de client API
+    path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
+
+    # Interface utilisateur Swagger UI (recommandée, très visuelle et interactive)
+    path('api/schema/swagger-ui/', SpectacularSwaggerView.as_view(url_name='schema'), name='swagger-ui'),
+
+    # Interface alternative ReDoc (présentation plus structurée en colonnes)
+    path('api/schema/redoc/', SpectacularRedocView.as_view(url_name='schema'), name='redoc'),
+]

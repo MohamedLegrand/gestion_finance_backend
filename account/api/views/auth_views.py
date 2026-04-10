@@ -4,12 +4,21 @@ from rest_framework import status, generics
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 
+from drf_spectacular.utils import extend_schema, OpenApiResponse  # ← Import indispensable
+
 from account.api.serializers.auth_serializer import LoginSerializer
 from account.api.serializers.user_serializer import RegisterSerializer
 
 
 # 🔐 LOGIN
 class LoginView(APIView):
+    @extend_schema(
+        request=LoginSerializer,   # ← Le sérializer utilisé pour la requête POST
+        responses={
+            200: OpenApiResponse(description="Connexion réussie, tokens JWT retournés"),
+            400: OpenApiResponse(description="Identifiants invalides"),
+        }
+    )
     def post(self, request):
         serializer = LoginSerializer(data=request.data)
 
@@ -29,3 +38,4 @@ class LoginView(APIView):
 # REGISTER
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
+    # Pas besoin d'annotation supplémentaire car CreateAPIView est automatiquement documenté

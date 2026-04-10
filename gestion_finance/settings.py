@@ -41,6 +41,9 @@ INSTALLED_APPS = [
     # Bibliothèques tierces
     'rest_framework',
     'rest_framework_simplejwt',
+     'drf_spectacular', 
+    
+   
 ]
 
 MIDDLEWARE = [
@@ -131,4 +134,21 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',  # ← Ajout
+}
+
+# Configuration Swagger / OpenAPI
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API Gestion Finance',
+    'DESCRIPTION': 'Documentation interactive de l\'API de gestion financière',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SORT_OPERATIONS': True,
+    'SCHEMA_PATH_PREFIX': '/api/',
 }
