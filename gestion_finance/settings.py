@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # mes applications
     'account',
+    'finances',
+    
     # Bibliothèques tierces
     'rest_framework',
     'rest_framework_simplejwt',

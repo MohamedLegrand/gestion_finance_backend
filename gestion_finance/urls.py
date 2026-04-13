@@ -32,6 +32,9 @@ urlpatterns = [
     # Vos endpoints API existants (gestion des comptes)
     path('api/account/', include('account.api.urls')),
 
+    # module finances
+    path('api/finances/', include('finances.api.urls')),
+
     # ==============================================
     # Documentation automatique de l'API (Swagger)
     # ==============================================
