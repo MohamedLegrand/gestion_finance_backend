@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # mes applications
     'account',
     'finances',
+    'dashboard',
     
     # Bibliothèques tierces
     'rest_framework',
@@ -86,14 +87,16 @@ WSGI_APPLICATION = 'gestion_finance.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'gestion_finance_db',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': 'postgres',
+        'USER': 'postgres.srynomvgvxwzuvicxabr',
+        'PASSWORD': '4d6f68616d6564',
+        'HOST': 'aws-1-eu-west-3.pooler.supabase.com',
+        'PORT': '6543',
+        'OPTIONS': {
+            'sslmode': 'require',
+        }
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/6.0/ref/settings/#auth-password-validators

@@ -35,6 +35,9 @@ urlpatterns = [
     # module finances
     path('api/finances/', include('finances.api.urls')),
 
+    # module dashboard  
+    path('api/dashboard/', include('dashboard.api.urls')),
+
     # ==============================================
     # Documentation automatique de l'API (Swagger)
     # ==============================================
